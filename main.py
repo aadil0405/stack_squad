@@ -1,6 +1,8 @@
 import json
 import re
 import random_responses
+import socketio
+import asyncio
 
 
 # Load JSON data
@@ -12,6 +14,10 @@ def load_json(file):
 
 # Store JSON data
 response_data = load_json("bot.json")
+
+#socket io server instance
+sio = socketio.AsyncServer()
+app = socketio.AsyncioMiddleware(sio)
 
 
 def get_response(input_string):
@@ -58,7 +64,38 @@ def get_response(input_string):
 
     return random_responses.random_string()
 
+#function to handle incoming message
+async def message_handler(sid, data):
+    user_input = data['message']
+    if not user_input.strip():
+        await sio.emit('bot_response', {'message': 'Please type something'}, room=sid)
+        return
+    bot_response = get_response(user_input)
+    await sio.emit('bot_response', {'message': bot_response}, room=sid)
 
-while True:
-    user_input = input("User: ")
-    print("ChatBot:", get_response(user_input))
+# Attach the event handler for 'message' events
+sio.on('message', message_handler)
+
+# Main asyncio event loop to run the Socket.IO server
+async def main():
+    # Create an aiohttp web application
+    app = socketio.AsyncioMiddleware(sio)
+    web_app = web.Application()
+    web_app.add_routes([web.static('/', './public')])  # Replace './public' with your frontend directory
+    web_app.router.add_route('GET', '/', index)
+    web_app.router.add_route('GET', '/socket.io/', app)
+    web_app.router.add_route('POST', '/socket.io/', app)
+
+    runner = web.AppRunner(web_app)
+    await runner.setup()
+    site = web.TCPSite(runner, 'localhost', 8000)
+    await site.start()
+
+if __name__ == '__main__':
+    asyncio.run(main())
+
+
+
+#while True:
+#    user_input = input("User: ")
+#    print("ChatBot:", get_response(user_input))
