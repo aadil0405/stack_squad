@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimpleChat</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .msger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 867px;
+        margin: 25px auto;
+        height: calc(100vh - 50px);
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .msger-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        background: #eee;
+        color: #333;
+      }
+      .msger-header-title {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .msger-header-options {
+        display: flex;
+        align-items: center;
+      }
+      .msger-chat {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        background: #fafafa;
+      }
+      .msg {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 10px;
+      }
+      .msg.left-msg {
+        justify-content: flex-start;
+      }
+      .msg.right-msg {
+        justify-content: flex-end;
+      }
+      .msg-img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+      }
+      .msg-bubble {
+        max-width: 500px;
+        padding: 10px;
+        border-radius: 15px;
+        background: #eee;
+        color: #333;
+      }
+      .msg-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+      .msg-info-name {
+        font-weight: bold;
+      }
+      .msg-info-time {
+        font-size: 12px;
+        color: #999;
+      }
+      .msg-text {
+        word-wrap: break-word;
+      }
+      .msger-inputarea {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background: #eee;
+      }
+      .msger-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .msger-send-btn {
+        margin-left: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background: #333;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="msger">
+      <header class="msger-header">
+        <div class="msger-header-title">
+          <i class="fas fa-comment-alt"></i> SimpleChat
+        </div>
+        <div class="msger-header-options">
+          <span><i class="fas fa-cog"></i></span>
+        </div>
+      </header>
+
+      <main class="msger-chat">
+        <!-- Messages will be appended here dynamically -->
+      </main>
+
+      <form class="msger-inputarea">
+        <input
+          type="text"
+          class="msger-input"
+          placeholder="Enter your message..."
+        />
+        <button type="submit" class="msger-send-btn">Send</button>
+      </form>
+    </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const chat = document.querySelector(".msger-chat");
+
+      // Function to append a message to the chat window
+      function appendMessage(name, side, text) {
+        const msgHTML = `
+        <div class="msg ${side}">
+          <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">${name}</div>
+              <div class="msg-info-time">${formatDate(new Date())}</div>
+            </div>
+            <div class="msg-text">${text}</div>
+          </div>
+        </div>
+      `;
+        chat.insertAdjacentHTML("beforeend", msgHTML);
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      // Function to format date as HH:mm
+      function formatDate(date) {
+        const hours = "0" + date.getHours();
+        const minutes = "0" + date.getMinutes();
+        return `${hours.slice(-2)}:${minutes.slice(-2)}`;
+      }
+
+      // Event listener for form submission (sending message)
+      document
+        .querySelector(".msger-inputarea")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const input = document.querySelector(".msger-input");
+          const message = input.value.trim();
+          if (message) {
+            socket.emit("chat message", message);
+            appendMessage("You", "right-msg", message);
+            input.value = "";
+          }
+        });
+
+      // Event listener for receiving messages from the server
+      socket.on("chat message", function (msg) {
+        appendMessage("BOT", "left-msg", msg);
+      });
+
+      // Event listener for hard fallback triggered
+      socket.on("hard fallback", function () {
+        // Clear chat history and inform user
+        chat.innerHTML =
+          '<div class="msg left-msg"><div class="msg-bubble">Chat reset. Please start again.</div></div>';
+      });
+
+      // Function to load chat history when page loads
+      window.addEventListener("load", function () {
+        fetchChatHistory();
+      });
+
+      // Function to fetch and display chat history from server
+      function fetchChatHistory() {
+        fetch("/chat-history")
+          .then((response) => response.json())
+          .then((history) => {
+            history.forEach((entry) => {
+              const { speaker, message } = entry;
+              appendMessage(
+                speaker.toUpperCase(),
+                `${speaker === "bot" ? "left-msg" : "right-msg"}`,
+                message
+              );
+            });
+          })
+          .catch((error) =>
+            console.error("Error fetching chat history:", error)
+          );
+      }
+    </script>
+  </body>
+</html>
+
+  
+  
