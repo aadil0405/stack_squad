@@ -1,142 +1,344 @@
 [
     {
-      "response_type": "greeting",
-      "user_input": ["hello", "hi", "hey"],
-      "bot_response": "Hey there!",
-      "required_words": []
-    },
-    {
-      "response_type": "farewell",
-      "user_input": ["see you", "goodbye", "bye"],
-      "bot_response": "See you later!",
-      "required_words": []
-    },
-    {
         "response_type": "greeting",
-        "user_input": ["nice", "to", "meet", "you"],
-        "bot_response": "The pleasure is all mine!",
-        "required_words": ["nice", "meet", "you"]
+        "user_input": ["hello", "hi", "hey", "good morning", "good evening"],
+        "bot_response": "Hello! How can I assist you today?",
+        "required_words": []
+    },
+    {
+        "response_type": "status_check",
+        "user_input": ["how are you", "how are you doing", "how's it going"],
+        "bot_response": "I'm just a bot, but I'm here to help! How can I assist you today?",
+        "required_words": []
     },
     {
         "response_type": "question",
-        "user_input": ["how", "to", "learn", "code", "coding", "apps"],
-        "bot_response": "Start by typing: 'How to learn coding' on Google.",
-        "required_words": ["learn", "code"]
+        "user_input": ["how old are you", "what is your age", "what's your age"],
+        "bot_response": "I was built by the StackSquad team. My age is irrelevant but you can give me any age that you want.",
+        "required_words":[]
+    },
+    {
+        "response_type": "introduction",
+        "user_input": ["what is your name", "who are you", "introduce yourself"],
+        "bot_response": "I am StackBot, your virtual assistant! How can I assist you today?",
+        "required_words": []
+    },
+    {
+        "response_type": "capabilities",
+        "user_input": ["what can you do", "how can you help me", "what are your functions"],
+        "bot_response": "I can help you with general questions, provide information, assist with tasks, and keep you company.",
+        "required_words": []
+    },
+    {
+        "response_type": "joke",
+        "user_input": ["tell me a joke", "make me laugh"],
+        "bot_response": "Why don't scientists trust atoms? Because they make up everything!",
+        "required_words": []
+    },
+    {
+        "response_type": "weather",
+        "user_input": ["what is the weather like", "weather", "current weather", "forecast"],
+        "bot_response": "I'm not equipped to check the weather, but you can look it up online or use a weather app!",
+        "required_words": ["weather"]
+    },
+    {
+        "response_type": "gratitude",
+        "user_input": ["thank you", "thanks", "appreciate it"],
+        "bot_response": "You're welcome! If you have any more questions, feel free to ask.",
+        "required_words": ["thanks"]
+    },
+    {
+        "response_type": "farewell",
+        "user_input": ["bye", "goodbye", "see you", "later"],
+        "bot_response": "Goodbye! Have a great day!",
+        "required_words": []
     },
     {
         "response_type": "question",
-        "user_input": ["how", "are", "you"],
-        "bot_response": "I'm great! Thanks for asking.",
-        "required_words": ["how", "are", "you"]
+        "user_input": ["i am hungry", "i want food"],
+        "bot_response": "I suggest that you order something",
+        "required_words":[]
+    },
+
+    {
+        "response_type": "order_menu",
+        "user_input": ["what is the menu", "what are my options", "what do you have to eat", "what's the menu"],
+        "bot_response": "Sure! We have pizza, burgers, salads, and drinks. What would you like to order?",
+        "required_words": []
     },
     {
-      "response_type": "order_menu",
-      "user_input": ["menu", "food", "options"],
-      "bot_response": "Sure! We have pizza, burgers, salads, and drinks. What would you like to order?",
-      "required_words": ["menu"]
+        "response_type": "order_pizza",
+        "user_input": ["pizza", "order pizza"],
+        "bot_response": "Great choice! What toppings would you like on your pizza? Please choose from pepperoni, mushrooms, onions, olives, extra cheese",
+        "required_words": ["pizza"]
     },
     {
-      "response_type": "ordering",
-      "user_input": ["order", "pizza", "burger", "salad", "drink"],
-      "bot_response": "What would you like to order?",
-      "required_words": ["order"]
+        "response_type": "order_toppings",
+        "user_input": ["pepperoni", "mushrooms", "onions", "olives", "extra cheese", "all of them"],
+        "bot_response": "Got it. Would you like a drink with that? We have soda, water and juice.",
+        "required_words": []
     },
     {
-      "response_type": "order_pizza",
-      "user_input": ["pizza"],
-      "bot_response": "Great choice! What toppings would you like on your pizza?",
-      "required_words": ["pizza"]
+        "response_type": "order_drink",
+        "user_input": ["soda", "water", "juice", "drink"],
+        "bot_response": "Okay, one drink. Anything else?",
+        "required_words": []
     },
     {
-      "response_type": "order_toppings",
-      "user_input": ["pepperoni", "mushrooms", "onions", "olives"],
-      "bot_response": "Got it. Would you like a drink with that?",
-      "required_words": []
+        "response_type": "order_burger",
+        "user_input": ["burger", "a burger", "order burger"],
+        "bot_response": "Great choice! Beef, lamb or vegetarian?",
+        "required_words":[]
     },
     {
-      "response_type": "order_drink",
-      "user_input": ["soda", "water", "juice"],
-      "bot_response": "Okay, one drink. Anything else?",
-      "required_words": []
+        "response_type": "burger_patty",
+        "user_input": ["lamb", "beef", "vegeterian"],
+        "bot_response": "Got it. Which toppings would you like? We have lettuce, tomatoes, jalapenos, cheese, pickles and onions",
+        "required_words":[]
     },
     {
-      "response_type": "order_confirmation",
-      "user_input": ["no", "that's all", "nothing else"],
-      "bot_response": "Perfect! Your order will be ready in 30 minutes.",
-      "required_words": []
+        "response_type": "burger_toppings",
+        "user_input": ["lettuce", "tomatoes", "jalapenoes", "cheese", "onions", "pickles", "all of them"],
+        "bot_response": "Alright. Would you like a drink with that? We have soda, water and juice",
+        "required_words":[]
     },
     {
-      "response_type": "thanks",
-      "user_input": ["thank", "thanks"],
-      "bot_response": "You're welcome!",
-      "required_words": []
+        "response_type": "order_salad",
+        "user_input": ["a salad", "one salad"],
+        "bot_response": "Sure! Unfortunately only caesar salad is available. Would you like to order that? ",
+        "required_words":[]
     },
     {
-      "response_type": "workout_start",
-      "user_input": ["workout", "exercise", "plan"],
-      "bot_response": "Sure, let's start your workout plan. What are your fitness goals?",
-      "required_words": ["workout"]
+        "response_type": "choice_of_salad",
+        "user_input": ["caesar salad"],
+        "bot_response": "Got it. Would you like a drink with that? We have soda, water and juice",
+        "required_words":[]
     },
     {
-      "response_type": "fitness_goals",
-      "user_input": ["build muscle", "lose weight", "stay fit"],
-      "bot_response": "Awesome! How many days a week can you work out?",
-      "required_words": []
+        "response_type": "order_change",
+        "user_input": ["Change order", "changed my mind", "different order", "yes"],
+        "bot_response": "Sure, what would you like for your main dish instead?",
+        "required_words": []
     },
     {
-      "response_type": "workout_days",
-      "user_input": ["1 day", "2 days", "3 days", "4 days", "5 days"],
-      "bot_response": "Great! Let's plan for {workout_days} of training. Do you have any specific preferences or equipment?",
-      "required_words": []
+        "response_type": "order_confirmation",
+        "user_input": ["that's all", "all set"],
+        "bot_response": "Perfect! Your order will be ready in 30 minutes.",
+        "required_words": []
     },
     {
-      "response_type": "workout_equipment",
-      "user_input": ["dumbbells", "no equipment", "resistance bands"],
-      "bot_response": "Perfect. We'll focus on {equipment} exercises. Ready to start with the first day?",
-      "required_words": []
+        "response_type": "workout_start",
+        "user_input": ["workout", "exercise", "plan", "fitness"],
+        "bot_response": "Sure, let's start your workout plan. What are your fitness goals?",
+        "required_words": []
     },
     {
-      "response_type": "workout_day1",
-      "user_input": ["yes", "ready"],
-      "bot_response": "Day 1: Full Body Workout. Do 3 sets of each exercise: 10 push-ups, 15 squats, 10 dumbbell rows, 15 lunges.",
-      "required_words": ["ready"]
+        "response_type": "fitness_goals",
+        "user_input": ["build muscle", "lose weight", "stay fit", "tone up"],
+        "bot_response": "Awesome! How many days a week can you work out?",
+        "required_words": []
     },
     {
-      "response_type": "workout_day2",
-      "user_input": ["day 2"],
-      "bot_response": "Day 2: Upper Body. Do 3 sets of each exercise: 12 dumbbell shoulder press, 15 bicep curls, 12 tricep dips, 15 dumbbell flyes.",
-      "required_words": []
+        "response_type": "workout_days",
+        "user_input": ["1 day", "2 days", "3 days", "4 days", "5 days", "6 days", "7 days"],
+        "bot_response": "Great! Let's plan your training. Do you have any specific preferences or equipment?",
+        "required_words": []
     },
     {
-      "response_type": "workout_day3",
-      "user_input": ["day 3"],
-      "bot_response": "Day 3: Lower Body. Do 3 sets of each exercise: 15 goblet squats, 12 dumbbell deadlifts, 15 calf raises, 12 dumbbell lunges.",
-      "required_words": []
+        "response_type": "workout_equipment",
+        "user_input": ["dumbbells", "no equipment", "resistance bands", "home gym"],
+        "bot_response": "Perfect. We'll focus on these exercises. Ready to start with the first day?",
+        "required_words": []
     },
     {
-      "response_type": "workout_day4",
-      "user_input": ["day 4"],
-      "bot_response": "Day 4: Core and Cardio. Do 3 sets of each exercise: 20 crunches, 15 leg raises, 1-minute plank, 20 mountain climbers.",
-      "required_words": []
+        "response_type": "workout_day1",
+        "user_input": ["ready", "let's go"],
+        "bot_response": "Day 1: Full Body Workout. Do 3 sets of each exercise: 10 push-ups, 15 squats, 10 dumbbell rows, 15 lunges.",
+        "required_words": []
     },
     {
-      "response_type": "workout_progress",
-      "user_input": ["progress", "track"],
-      "bot_response": "You can keep a workout journal or use a fitness app to track your exercises, sets, and reps. Consistency is key!",
-      "required_words": ["progress"]
+        "response_type": "workout_day2",
+        "user_input": ["day 2", "next day"],
+        "bot_response": "Day 2: Upper Body. Do 3 sets of each exercise: 12 dumbbell shoulder press, 15 bicep curls, 12 tricep dips, 15 dumbbell flyes.",
+        "required_words": ["day 2"]
     },
     {
-      "response_type": "workout_motivation",
-      "user_input": ["motivate", "stay motivated", "motivation"],
-      "bot_response": "Set realistic goals, track your progress, and celebrate small achievements. Finding a workout buddy can also help keep you accountable.",
-      "required_words": ["motivation"]
+        "response_type": "workout_day3",
+        "user_input": ["day 3", "next day"],
+        "bot_response": "Day 3: Lower Body. Do 3 sets of each exercise: 15 goblet squats, 12 dumbbell deadlifts, 15 calf raises, 12 dumbbell lunges.",
+        "required_words": ["day 3"]
     },
     {
-      "response_type": "unknown",
-      "user_input": [],
-      "bot_response": "I'm sorry, I didn't understand that.",
-      "required_words": []
+        "response_type": "workout_day4",
+        "user_input": ["day 4", "next day"],
+        "bot_response": "Day 4: Core and Cardio. Do 3 sets of each exercise: 20 crunches, 15 leg raises, 1-minute plank, 20 mountain climbers.",
+        "required_words": ["day 4"]
+    },
+    {
+        "response_type": "workout_progress",
+        "user_input": ["progress", "track", "how am i doing"],
+        "bot_response": "You can keep a workout journal or use a fitness app to track your exercises, sets, and reps. Consistency is key!",
+        "required_words": []
+    },
+    {
+        "response_type": "workout_motivation",
+        "user_input": ["motivate", "stay motivated", "motivation"],
+        "bot_response": "Set realistic goals, track your progress, and celebrate small achievements. Finding a workout buddy can also help keep you accountable.",
+        "required_words": []
+    },
+    {
+        "response_type": "unknown",
+        "user_input": [],
+        "bot_response": "Can you give me more information?",
+        "required_words": []
+    },
+    {
+        "response_type": "time",
+        "user_input": ["time", "current time", "what's the time"],
+        "bot_response": "I'm not equipped to check the time, but you can look it up on your device!",
+        "required_words": ["time"]
+    },
+    {
+        "response_type": "date",
+        "user_input": ["date", "today's date", "what's the date"],
+        "bot_response": "I'm not equipped to check the date, but you can look it up on your device!",
+        "required_words": ["date"]
+    },
+    {
+        "response_type": "location",
+        "user_input": ["where am I", "current location", "my location"],
+        "bot_response": "I'm not equipped to check your location, but you can look it up on your device!",
+        "required_words": []
+    },
+    {
+        "response_type": "chat",
+        "user_input": ["let's chat", "talk to me", "chat with me"],
+        "bot_response": "Sure! What would you like to talk about?",
+        "required_words": []
+    },
+    {
+        "response_type": "favorite_color",
+        "user_input": ["favorite color", "what's your favorite color"],
+        "bot_response": "I don't have a favorite color, but I hear blue is quite popular! What's your favorite color?",
+        "required_words": ["color"]
+    },
+    {
+        "response_type": "favorite_color_respnse",
+        "user_input": ["blue", "red", "green", "yellow", "purple", "black"],
+        "bot_response":"Oh nice. What do you want to talk about now?",
+        "required_words": []
+    },
+    {
+        "response_type": "favorite_food",
+        "user_input": ["favorite food", "what's your favorite food"],
+        "bot_response": "I don't eat food, but I hear pizza is quite popular! What's your favorite food?",
+        "required_words": ["food"]
+    },
+    {
+        "response_type":"favorite_food_response",
+        "user_input":["spaghetti", "chocolate", "noodles", "Dönner"],
+        "bot_response": "I see that you have great taste. What do you want to talk about now?",
+        "required_words": []
+    },
+    {
+        "response_type": "hobbies",
+        "user_input": ["what are your hobbies", "do you have hobbies"],
+        "bot_response": "I enjoy helping people and answering questions. What about you?",
+        "required_words": ["hobbies"]
+    },
+    {
+        "response_type": "hobbies_response",
+        "user_input":["reading", "doing sports", "listening to songs", "cooking", "going out", "travelling"],
+        "bot_response":"That is good. What do you want to talk about now?",
+        "required_words":[]
+    },
+    {
+        "response_type": "music",
+        "user_input": ["favorite music", "what music do you like"],
+        "bot_response": "I don't listen to music, but I hear different genres have their own charm! What's your favorite music?",
+        "required_words": ["music"]
+    },
+    {
+        "response_type": "music_response",
+        "user_input": ["coldplay", "rock", "country songs"],
+        "bot_response": "I see. What do you want to talk about now?",
+        "required_words":[]
+    },  
+    {
+        "response_type": "movies",
+        "user_input": ["what is your favorite movie", "what movies do you like"],
+        "bot_response": "I don't watch movies, but I can help you find information about them! What's your favorite movie?",
+        "required_words": ["movie"]
+    },
+    {
+        "response_type": "movies_response",
+        "user_input": ["jurassic world","avatar", "the avengers"],
+        "bot_response": "I see. What do you want to talk about now?",
+        "required_words":[]
+    },
+    {
+        "response_type": "news",
+        "user_input": ["what's the news", "current news", "latest news"],
+        "bot_response": "I'm not equipped to check the latest news, but you can look it up online or use a news app!",
+        "required_words": ["news"]
+    },
+    {
+        "response_type": "sports",
+        "user_input": ["sports scores", "latest game", "current sports"],
+        "bot_response": "I'm not equipped to check sports scores, but you can look it up online or use a sports app!",
+        "required_words": []
+    },
+    {
+        "response_type": "books",
+        "user_input": ["favorite book", "what books do you like"],
+        "bot_response": "I don't read books, but I can help you find information about them! What's your favorite book?",
+        "required_words": []
+    },
+    {
+        "response_type": "book_response",
+        "user_input": ["harry potter", "lord of the rings", "the great gatsby", "hamlet"],
+        "bot_response": "Great choice. What do you want to talk about now? ",
+        "required_words":[]
+    },
+    {
+        "response_type": "vacation",
+        "user_input": ["vacation", "travel", "holiday plans"],
+        "bot_response": "That sounds exciting! Do you have any destinations in mind?",
+        "required_words": []
+    },
+    {
+        "response_type": "vacation_response",
+        "user_input": ["paris", "london", "barcelona", "switzerland", "munich", "mallorca", "sweden", "new york"],
+        "bot_response": "Cool. What do you want to talk about now?",
+        "required_words":[]
+    },
+
+    {
+        "response_type": "favorite_sport",
+        "user_input": ["what's your favorite sport", "favorite sport"],
+        "bot_response": "I don't play sports, but I hear soccer is quite popular! What's your favorite sport?",
+        "required_words": []
+    },
+    {
+        "response_type": "favorite_sport_response",
+        "user_input": ["football", "badminton", "tennis", "martial arts"],
+        "bot_response": "Cool, you must be good at it! What do you want to talk about now?",
+        "required_words":[]
+    },
+
+    {
+        "response_type": "life_advice",
+        "user_input": ["give me an advice", "a life advice", "any advice"],
+        "bot_response": "Always strive to learn and grow. Treat others with kindness and respect. What's something you're currently working on?",
+        "required_words": []
+    },
+    {
+        "response_type": "fun_fact",
+        "user_input": ["fun fact", "interesting fact"],
+        "bot_response": "Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible!",
+        "required_words": []
     }
-  ]
+]
+
   
   
